@@ -50,7 +50,7 @@ public void mt_getResult(){
 
 1. a.
 
-Ans: 
+Ans: 用到了關於函式宣告，使用到有關陣列的概念。
 
 
 
