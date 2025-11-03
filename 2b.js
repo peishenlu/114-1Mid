@@ -42,13 +42,23 @@ http.createServer((req, res) => {
   let filePath = '';
   let fileOtherFile = '';
 
+
   // Switch根據不同路由要寫的部分
-
-
-
-
-
   
+  if (req.url === '/') {
+    filePath = './index.ejs';
+  } else if (req.url === '/calculator') {
+    filePath = './index2.ejs';
+  }
+  // ================================
+  // 🟡② 新增：處理靜態資源（CSS / JS）
+  // ================================
+  else if (req.url.endsWith('.css') || req.url.endsWith('.js')) {
+    fileOtherFile = '.' + req.url;
+  } else {
+    filePath = './index3.ejs';
+  }
+
 
   // ==========================================
   // 步驟 2: 判斷文件類型（提取副檔名）
@@ -120,7 +130,7 @@ http.createServer((req, res) => {
     //   (err, template): 回調函數的參數
     //                    err: 錯誤物件（若成功則為 null）
     //                    template: 讀取到的文件內容（字串）
-    fs.readFile(('.' + filePath), 'utf8', (err, template) => {
+    fs.readFile(filePath, 'utf8', (err, template) => {
 
       // 錯誤處理：檢查文件是否讀取失敗
       if (err) {

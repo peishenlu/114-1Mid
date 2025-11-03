@@ -21,8 +21,19 @@
  *   輸出: ["mouse"]
  */
 function getLowStock(products) {
- 
+
+  //先找出庫存少於10的項目
+  const lowStockItems = products.filter(item => item.stock < 10);
+
+  //再來是取出這些項目的名稱
+  const itemNames = lowStockItems.map(item => item.name);
+
+  //最後輸出庫存少於10的結果
+  console.log("庫存少於10的項目：",itemNames);
+  return itemNames;
 }
+
+
 
 
 // ==========================================
@@ -44,7 +55,24 @@ function getLowStock(products) {
  */
 function updateStock(products, updates) {
   
+  //先用map建立新的陣列
+  const updated = products.map(item => {
+
+    if (updates[item.name] !== undefined) {
+      return {...item, stock: updates[item.name] };
+    } else{
+      return {...item };
+    }
+  });
+
+  updated.forEach(item => {
+    console.log(`${item.name}的庫存: ${item.stock}`);
+  });
+
+  return updated;
 }
+
+
 
 
 // ==========================================
@@ -58,6 +86,7 @@ const products = [
   { name: "monitor", stock: 8 },
   { name: "usb cable", stock: 40 }
 ];
+getLowStock(products);
 
 console.log("==========================================");
 console.log("原始商品資料：");

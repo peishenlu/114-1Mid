@@ -9,6 +9,19 @@ const server = http.createServer(function (request, response) {
 
   // 請寫 switch完成各個收到不同的請求以及輸出不同的回應字串 (使用 switch)
   
+  switch (url) {
+    case '/':
+      answer = 'index.html輸出部分';
+      break;
+
+    case '/calculator':
+      answer = 'index2.html輸出的部分';
+      break;
+
+    default:
+      answer = 'error.html輸出的部分';
+      break;      
+  }
 
 
 
